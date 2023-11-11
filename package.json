@@ -1,3 +1,18 @@
 {
     
+"dependencies": {
+    
+    
+"@azure/identity": "^4.0.0",
+    
+    
+"@azure/keyvault-secrets": "^4.7.0",
+    
+    
+"axios": "^1.6.1",
+    
+    
+"az": "^0.2.3"
+    
+}
 }
