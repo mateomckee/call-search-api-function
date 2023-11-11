@@ -3,7 +3,7 @@ const { DefaultAzureCredential } = require('@azure/identity');
 const { SecretClient } = require('@azure/keyvault-secrets');
 
 module.exports = async function (context, req) {
-    console.log('function running');
+    context.log('function running');
     try {
         const keyVaultName = 'mentormolesecrets';
         const secretName = 'BingSearchAPIKey1';
