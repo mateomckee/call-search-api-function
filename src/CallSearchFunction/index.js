@@ -4,7 +4,6 @@ const { SecretClient } = require('@azure/keyvault-secrets');
 
 module.exports = async function (context, req) {
   try {
-    console.log('run');
     const keyVaultName = 'mentormolesecrets';
     const secretName = 'BingSearchAPIKey1';
 
