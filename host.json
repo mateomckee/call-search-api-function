@@ -1,12 +1,15 @@
 {
-    "version": "2.0",
-    "extensions": {
-      "http": {
-        "routePrefix": "",
-        "cors": {
-          "allowedOrigins": ["https://mentormole.com", "https://lively-meadow-07db10510-test.centralus.4.azurestaticapps.net", "localhost:4200"]
-        }
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
       }
     }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[3.*, 4.0.0)"
   }
-  
+}
