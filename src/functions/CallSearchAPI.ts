@@ -3,10 +3,10 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/fu
 export async function CallSearchAPI(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
     context.log(`Http function processed request for url "${request.url}"`);
 
-    const name = request.query.get('name') || (await request.text()) || 'world';
+    const query = request.query.get('q') || (await request.text()) || 'error';
 
     const response = {
-        message: `Hello, ${name}!`
+        message: `${query}`
     };
 
     return {
