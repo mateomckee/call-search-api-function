@@ -17,7 +17,7 @@ export async function CallSearchAPI(request: HttpRequest, context: InvocationCon
         const secretClient = new SecretClient(keyVaultUri, credential);
 
         // Retrieve the Bing Web Search API key from Key Vault
-        const secretName = 'searchApiKey';
+        const secretName = 'BingSearchAPIKey1';
         const apikeySecret = await secretClient.getSecret(secretName);
 
         const bingApiKey = apikeySecret.value;
