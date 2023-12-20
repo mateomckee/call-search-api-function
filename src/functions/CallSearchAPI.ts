@@ -4,40 +4,39 @@ import { SecretClient } from '@azure/keyvault-secrets';
 import { DefaultAzureCredential } from '@azure/identity';
 
 export async function CallSearchAPI(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
-    context.log(`Http function processed request for url "${request.url}"`);
 
     const query = request.query.get('q') || (await request.text()) || 'error';
+    const setLang = 'en-US'; //language support coming soon
 
     try {
-        // Create an instance of the SecretClient class from @azure/keyvault-secrets
         const keyVaultName = 'mentormolesecrets';
         const keyVaultUri = `https://${keyVaultName}.vault.azure.net`;
         const credential = new DefaultAzureCredential();
 
         const secretClient = new SecretClient(keyVaultUri, credential);
 
-        // Retrieve the Bing Web Search API key from Key Vault
+        //retrieve the Bing Web Search API key from the Key Vault
         const secretName = 'BingSearchAPIKey1';
         const apikeySecret = await secretClient.getSecret(secretName);
 
         const bingApiKey = apikeySecret.value;
 
-        // Use the API key in the Bing Web Search API call
-        const bingApiEndpoint = 'https://api.cognitive.microsoft.com/bing/v7.0/search';
+        const bingApiEndpoint = 'https://api.bing.microsoft.com/v7.0/videos/search	';
 
         const response = await axios.get(bingApiEndpoint, {
             params: {
                 q: query,
+                setLang: setLang,
             },
             headers: {
                 'Ocp-Apim-Subscription-Key': bingApiKey,
             },
         });
 
-        // Process the response from the Bing Web Search API
+        //process the response from the Bing Web Search API
         const responseData = response.data;
 
-        // Modify the response to fit your needs
+        //modify the response to fit your needs
         const formattedResponse = {
             bingApiResponse: responseData,
             message: `Your custom message for ${query}`,
@@ -52,7 +51,7 @@ export async function CallSearchAPI(request: HttpRequest, context: InvocationCon
     } catch (error) {
         context.log(`Error calling Bing Web Search API: ${error.message}`);
 
-        // Provide a more specific error response
+        //provide a more specific error response
         return {
             status: 500, // Internal Server Error
             body: JSON.stringify({ error: 'Internal Server Error', errorMessage: error.message }),
