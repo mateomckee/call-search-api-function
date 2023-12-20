@@ -64,7 +64,7 @@ export async function CallSearchAPI(request: HttpRequest, context: InvocationCon
 }
 
 app.http('CallSearchAPI', {
-    methods: ['GET', 'POST'],
+    methods: ['GET'],
     authLevel: 'anonymous',
     handler: CallSearchAPI
 });
