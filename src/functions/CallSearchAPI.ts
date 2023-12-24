@@ -38,8 +38,8 @@ export async function CallSearchAPI(request: HttpRequest, context: InvocationCon
 
         //modify the response to fit your needs
         const formattedResponse = {
-            bingApiResponse: responseData,
-            message: `Your custom message for ${query}`,
+            response: responseData,
+            query: `${query}`,
         };
 
         return {
