@@ -6,6 +6,6 @@
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing"
   },
   "Host": {
-    "CORS": "*"
+    "CORS": "https://www.mentormole.com/"
   }
 }
